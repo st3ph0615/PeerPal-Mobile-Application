@@ -45,7 +45,7 @@ export default function ProfileSetUp4({navigation}) {
                     />
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LogoScreen')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SettingUp')}>
                     <Text style={styles.finishSetup}>Finish Setup</Text>
                 </TouchableOpacity>
 

@@ -31,7 +31,7 @@ export default function TutorSetUp5({navigation}) {
                     />
                 </View>
 
-                <View styles={styles.bioContainer}>
+                <View>
                     <Text style={styles.title}>Tutoring Experience</Text>
                     <TextInput
                         label='Short Bio'
@@ -45,7 +45,7 @@ export default function TutorSetUp5({navigation}) {
                     />
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LogoScreen')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('VerifyIdentity')}>
                     <Text style={styles.finishSetup}>Finish Setup</Text>
                 </TouchableOpacity>
 
