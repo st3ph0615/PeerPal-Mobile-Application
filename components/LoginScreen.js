@@ -77,7 +77,7 @@ export default function LoginScreen({navigation}) {
       <View style={styles.buttonContainer}>
     <Button 
     mode='contained'
-    onPress={() => setMessage("Wala pa, EXCITED?")}
+    onPress={() => navigation.navigate('UserChoices')}
     style={styles.button}
     labelStyle={styles.label}
     contentStyle={{ height: 50 }}
