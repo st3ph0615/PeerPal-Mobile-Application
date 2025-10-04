@@ -15,6 +15,8 @@ import TutorSetUp4 from "./components/TutorSetUp4";
 import TutorSetUp5 from "./components/TutorSetUp5";
 import SettingUp from "./components/SettingUp";
 import VerifyIdentity from "./components/VerifyIdentity";
+import VerifyIdentity1 from "./components/VerifyIdentity1";
+import PendingApproval from "./components/PendingApproval";
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -41,6 +43,8 @@ export default function App() {
         <Stack.Screen name="TutorSetUp5" component={TutorSetUp5}/>
         <Stack.Screen name="SettingUp" component={SettingUp}/>
         <Stack.Screen name="VerifyIdentity" component={VerifyIdentity}/>
+        <Stack.Screen name="VerifyIdentity1" component={VerifyIdentity1}/>
+        <Stack.Screen name="PendingApproval" component={PendingApproval}/>
       </Stack.Navigator>
     </NavigationContainer>
     </PaperProvider>

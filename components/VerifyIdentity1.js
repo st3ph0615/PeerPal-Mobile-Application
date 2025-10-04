@@ -3,11 +3,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from "expo-image-picker";
 import { MaterialIcons } from '@expo/vector-icons';
 
-
-
-
-
-export default function VerifyIdentity({navigation}){
+export default function VerifyIdentity1({navigation}){
 
     const pickDocument = async () => {
   try {
@@ -78,7 +74,7 @@ export default function VerifyIdentity({navigation}){
             </TouchableOpacity>
             
             <Text style={styles.text}>You need to upload your</Text>
-                            <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold',}}>STUDENT ID</Text>
+                            <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold',}}>CERTIFICATE OF REGISTRATION</Text>
                             <View style={{marginTop: 1.98}}>
                                 <Text style={styles.description}>To ensure safety and trust within PeerPal, we require tutors to </Text>
                                 <Text style={styles.description}>upload a valid University ID or proof of enrollment. This helps </Text>
@@ -104,7 +100,7 @@ export default function VerifyIdentity({navigation}){
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.arrowButton} onPress={() => navigation.navigate('VerifyIdentity1') }>
+                <TouchableOpacity style={styles.arrowButton} onPress={() => navigation.navigate('PendingApproval') }>
                     <MaterialIcons name="arrow-forward" size={50} color="white" />
                 </TouchableOpacity>
             </View>
