@@ -1,6 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, photo} from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
+import * as ImagePicker from "expo-image-picker";
 import { MaterialIcons } from '@expo/vector-icons';
+
+
 
 
 
@@ -24,8 +27,28 @@ export default function VerifyIdentity({navigation}){
   }
 };
 
+    const openCamera = async () => {
+        const permission = await ImagePicker.requestCameraPermissionsAsync();
+
+        if (!permission.granted) {
+            alert("Camera access is required to take photos!");
+            return;
+        }
+
+        const result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [4,3],
+            quality: 1,
+        });
+
+        if (!result.cancelled) {
+            setPhoto(result.assets[0].uri);
+        }
+    };
+
     return(
         <View style={styles.container}>
+            <View style={styles.upperContainer}>
             <Text style={styles.header}>Verify your Identity</Text>
             <TouchableOpacity style={styles.galleryBtn} onPress={pickDocument}>
                     <MaterialIcons name="photo-library" size={40} color="#001E40" />
@@ -45,7 +68,23 @@ export default function VerifyIdentity({navigation}){
                                 <Text style={styles.description}>confirm that all tutors are legitimate members of our university  </Text>
                                 <Text style={styles.description}>community and protects students from unauthorized users.</Text>
                             </View>
+            </View>
+            <View style={styles.bottomContainer}>
+                <TouchableOpacity style={styles.button} onPress={openCamera}>
+                    <MaterialIcons name="photo-camera" size={24} color='white' />
+                    <Text style={styles.buttonText}>Use Camera</Text>
+                </TouchableOpacity>
 
+                {photo && <Image source={{ uri: photo }} style={styles.image} />}
+
+                <Text style={styles.or}>────────      or       ────────</Text>  
+
+                <View style={styles.gallery}>
+                    <MaterialIcons name="photo-library" size={40} color="#001E40" />
+                </View>
+
+            </View>
+            
         </View>
     )
 }
@@ -53,9 +92,13 @@ export default function VerifyIdentity({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white',
+    },
+    upperContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#001E40',
+        height: 515.63,
     },
     header: {
         fontWeight: 'bold',
@@ -83,5 +126,43 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: '100',
     },
+    bottomContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FFBA06',
+        padding: 10,
+        gap: 10,
+        width: 150,
+        height: 46,
+        borderRadius: 10,
+        marginTop: -25,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 15,
+    },
+    or: {
+        color: 'black',
+        size: 50,
+        marginTop: 26.78,
+        fontWeight: '100',
+
+    },
+    gallery: {
+        borderWidth: 1,
+        borderColor: '#C2C2C2',
+        borderRadius: 10,
+        backgroundColor: 'transparent',
+        width: 326,
+        height: 111, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 49.78,
+    }
 
 })
