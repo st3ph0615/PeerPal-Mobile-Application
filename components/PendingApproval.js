@@ -8,7 +8,7 @@ export default function PendingApproval({navigation}) {
                 source={require('../assets/pending.png')}
                 style={styles.bigIcon}
                 />
-            <Text style={styles.header}>How do you prefer to learn?</Text>
+            <Text style={styles.header}>Pending approval from Admin</Text>
             <Text style={styles.subheader}>You'll be notified once your profile is verified.</Text>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LogoScreen')}>
                 <Text style={styles.text}>Go to Dashboard</Text>
