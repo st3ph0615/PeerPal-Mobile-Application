@@ -45,12 +45,29 @@ export default function VerifyIdentity({navigation}){
             setPhoto(result.assets[0].uri);
         }
     };
+    const openGallery = async () => {
+        try {
+            const result = await DocumentPicker.getDocumentAsync({
+            type: 'application/pdf', // Only allow PDF files
+            copyToCacheDirectory: true,
+            });
+
+            if (result.type === 'success') {
+            console.log('Selected file:', result);
+            // You can now upload the file or save it in state
+            } else if (result.type === 'cancel') {
+            console.log('User cancelled document picker');
+            }
+        } catch (err) {
+            console.error('Error picking document:', err);
+        }
+        };
 
     return(
         <View style={styles.container}>
             <View style={styles.upperContainer}>
             <Text style={styles.header}>Verify your Identity</Text>
-            <TouchableOpacity style={styles.galleryBtn} onPress={pickDocument}>
+            <TouchableOpacity style={styles.documentBtn} onPress={pickDocument}>
                     <MaterialIcons name="photo-library" size={40} color="#001E40" />
                     <View style={styles.textContainer}>
                         <Image
@@ -79,10 +96,17 @@ export default function VerifyIdentity({navigation}){
 
                 <Text style={styles.or}>────────      or       ────────</Text>  
 
-                <View style={styles.gallery}>
+                <TouchableOpacity style={styles.galleryBtn} onPress={openGallery}>
                     <MaterialIcons name="photo-library" size={40} color="#001E40" />
-                </View>
+                    <View style={{gap: 5}}>
+                    <Text style={{fontSize: 15, fontWeight: 'bold', color: '#001E40'}}>Select documents from Gallery</Text>
+                    <Text style={{fontSize: 15, fontWeight: '100', color: '#001E40'}}>Upload PDF file</Text>
+                    </View>
+                </TouchableOpacity>
 
+                <TouchableOpacity style={styles.arrowButton} onPress={() => navigation.navigate('LogoScreen') }>
+                    <MaterialIcons name="arrow-forward" size={50} color="white" />
+                </TouchableOpacity>
             </View>
             
         </View>
@@ -105,7 +129,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: 'white',
     },
-    galleryBtn: {
+    documentBtn: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 1.98,
@@ -114,8 +138,6 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 10,
-    
-        
     },
     textContainer: {
         justifyContent: 'center',
@@ -153,7 +175,8 @@ const styles = StyleSheet.create({
         fontWeight: '100',
 
     },
-    gallery: {
+    galleryBtn: {
+        flexDirection: 'row',
         borderWidth: 1,
         borderColor: '#C2C2C2',
         borderRadius: 10,
@@ -163,6 +186,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 49.78,
+        gap: 10,
+        padding: 10,
+    },
+    arrowButton: {
+        backgroundColor: '#001E40',
+        borderRadius: 100,
+        padding: 10,
+        marginTop: 22.63,
     }
 
 })
