@@ -104,7 +104,7 @@ export default function StudentProfile({navigation}) {
         <TouchableOpacity onPress={() => navigation.navigate('Newsfeed')}>
           <Ionicons name="person-outline" size={26} color="#001E40" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Ionicons name="home-outline" size={24} color="#001E40" />
         </TouchableOpacity>
         <TouchableOpacity>
@@ -114,7 +114,7 @@ export default function StudentProfile({navigation}) {
           <Ionicons name="chatbubble-ellipses-outline" size={24} color="#001E40" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navHighlight}>
-          <Ionicons name="person-outline" size={26} color="#001E40" />
+          <Ionicons name="person-circle-outline" size={28} color="#001E40" />
         </TouchableOpacity>
       </View>
         </View>

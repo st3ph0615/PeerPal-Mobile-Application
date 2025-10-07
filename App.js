@@ -19,6 +19,7 @@ import VerifyIdentity1 from "./components/VerifyIdentity1";
 import PendingApproval from "./components/PendingApproval";
 import Newsfeed from "./components/Newsfeed";
 import StudentProfile from "./components/StudentProfile";
+import Home from "./components/Home";
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -49,6 +50,7 @@ export default function App() {
         <Stack.Screen name="PendingApproval" component={PendingApproval}/>
         <Stack.Screen name="Newsfeed" component={Newsfeed}/>
         <Stack.Screen name="StudentProfile" component={StudentProfile}/>
+        <Stack.Screen name="Home" component={Home}/>
         
       </Stack.Navigator>
     </NavigationContainer>

@@ -125,10 +125,10 @@ export default function Newsfeed({navigation}) {
 
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.navHighlight}>
           <Ionicons name="person-outline" size={26} color="#001E40" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Ionicons name="home" size={26} color="#001E40" />
         </TouchableOpacity>
         <TouchableOpacity>
