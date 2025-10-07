@@ -126,16 +126,19 @@ export default function Newsfeed({navigation}) {
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
         <TouchableOpacity>
+          <Ionicons name="person-outline" size={26} color="#001E40" />
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Ionicons name="home" size={26} color="#001E40" />
         </TouchableOpacity>
         <TouchableOpacity>
+                  <Ionicons name="calendar-outline" size={24} color="#001E40" />
+                </TouchableOpacity>
+        <TouchableOpacity>
           <Ionicons name="chatbubble-ellipses-outline" size={26} color="#001E40" />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <FontAwesome name="bell-o" size={24} color="#001E40" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="person-outline" size={26} color="#001E40" />
+        <TouchableOpacity onPress={() => navigation.navigate('StudentProfile')}>
+          <Ionicons name="person-circle-outline" size={28} color="#001E40" />
         </TouchableOpacity>
       </View>
         </SafeAreaView>
@@ -274,16 +277,26 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'white',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "white",
     paddingVertical: 10,
-    borderTopWidth: 0.5,
-    borderColor: '#ccc',
-    position: 'absolute',
+    borderTopWidth: 0.3,
+    borderColor: "#ccc",
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  navHighlight: {
+    backgroundColor: "#FFC107",
+    padding: 10,
+    borderRadius: 30,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3,
+    elevation: 3,
   },
 });

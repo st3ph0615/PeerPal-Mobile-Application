@@ -12,7 +12,7 @@ export default function SettingUp({navigation}) {
             <Text style={styles.header}>You're all set!</Text>
             <Text style={styles.description}>Start finding tutors for your subjects.</Text>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Newsfeed')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudentProfile')}>
                 <Text style={styles.findButton}>Find a Tutor</Text>
             </TouchableOpacity>
         </View>
