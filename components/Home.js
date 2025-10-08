@@ -24,7 +24,7 @@ export default function Home({navigation}) {
       likes: 11,
       comments: 5,
       messages: 1,
-      isAnonymous: false,
+      isAnonymous: false,   
       avatar: require("../assets/all-set-check.png"),
     },
     {
