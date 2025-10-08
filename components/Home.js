@@ -8,52 +8,23 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
-export default function Home({navigation}) {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      name: "Stephanie Salvaleon",
-      course: "BS in Information Technology (3rd Year)",
-      time: "50 mins.",
-      subject: "CS101 - Intro to Programming",
-      tags: ["#recursion", "#CS101", "#Coding"],
-      content:
-        "I don't understand recursion when functions call themselves. I keep getting lost in the steps. Can someone explain simply?",
-      likes: 11,
-      comments: 5,
-      messages: 1,
-      isAnonymous: false,   
-      avatar: require("../assets/all-set-check.png"),
-    },
-    {
-      id: 2,
-      name: "Anonymous",
-      course: "BS in Mathematics (1st Year)",
-      time: "1 hr",
-      subject: "MATH201 - Discrete Mathematics",
-      tags: ["#logic", "#math", "#settheory"],
-      content:
-        "Struggling to understand proofs by induction. Can anyone share some easy examples?",
-      likes: 8,
-      comments: 3,
-      messages: 0,
-      isAnonymous: true,
-      avatar: require("../assets/1on1.png"),
-    },
-  ]);
-
+export default function NewsfeedScreen() {
+  const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [subject, setSubject] = useState("");
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   const handlePost = () => {
     if (!newPost.trim()) return;
 
     const newEntry = {
       id: Date.now(),
-      name: "Stephanie Salvaleon",
-      course: "BS in Information Technology (3rd Year)",
+      name: isAnonymous ? "Anonymous" : "Stephanie Salvaleon",
+      course: isAnonymous
+        ? "Posted Anonymously"
+        : "BS in Information Technology (3rd Year)",
       time: "Just now",
       subject: subject || "Untitled Subject",
       tags: ["#newPost"],
@@ -61,59 +32,69 @@ export default function Home({navigation}) {
       likes: 0,
       comments: 0,
       messages: 0,
-      isAnonymous: false,
-      avatar: require("../assets/choice1.png"),
+      isAnonymous: isAnonymous,
+      avatar: isAnonymous
+        ? require("../assets/1on1.png")
+        : require("../assets/1on1.png"),
     };
 
     setPosts([newEntry, ...posts]);
     setNewPost("");
     setSubject("");
+    setIsAnonymous(false);
   };
 
   return (
     <View style={styles.container}>
       <ScrollView>
-        {/* HEADER + POST BOX */}
+        {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Post Your Academic Struggle</Text>
 
           <View style={styles.postBox}>
             <TextInput
               style={styles.textInput}
-              placeholder="e.g., Struggling with recursion in CS101..."
-              placeholderTextColor="#555"
+              placeholder="e.g., Struggling with react-native in Mobile ......"
+              placeholderTextColor="#bbbbbbff"
               multiline
               value={newPost}
               onChangeText={setNewPost}
             />
 
-            <View style={styles.postOptions}>
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-                <Image
-                  source={require("../assets/1on1.png")}
-                  style={styles.userImage}
+            {/* Post Options */}
+            <View style={styles.optionsRow}>
+              <TouchableOpacity
+                style={[
+                  styles.optionButton,
+                  isAnonymous && styles.optionActive,
+                ]}
+                onPress={() => setIsAnonymous(!isAnonymous)}
+              >
+                <Ionicons
+                  name={isAnonymous ? "checkmark-circle" : "ellipse-outline"}
+                  size={18}
+                  color={isAnonymous ? "#FFC107" : "#001E40"}
                 />
-                <View>
-                  <View style={styles.optionRow}>
-                    <Ionicons name="ellipse-outline" size={14} color="white" />
-                    <Text style={styles.optionText}> Post Anonymously</Text>
-                  </View>
-                  <View style={styles.optionRow}>
-                    <Ionicons name="chatbubble-outline" size={14} color="white" />
-                    <Text style={styles.optionText}> Allow only tutors to message</Text>
-                  </View>
-                </View>
-              </View>
+                <Text
+                  style={[
+                    styles.optionText,
+                    isAnonymous && { color: "#FFC107" },
+                  ]}
+                >
+                  Post Anonymously
+                </Text>
+              </TouchableOpacity>
 
               <TextInput
                 style={styles.subjectInput}
-                placeholder="Subject Title"
-                placeholderTextColor="#001E40"
+                placeholder="Subject Title/Code"
+                placeholderTextColor="#FFBA06"
                 value={subject}
                 onChangeText={setSubject}
               />
             </View>
 
+            {/* Post Button */}
             <View style={styles.postRow}>
               <TouchableOpacity style={styles.postBtn} onPress={handlePost}>
                 <Text style={styles.postBtnText}>Post</Text>
@@ -144,14 +125,6 @@ export default function Home({navigation}) {
                 </View>
               </View>
 
-              <View style={styles.tagRow}>
-                {post.tags.map((tag, i) => (
-                  <Text key={i} style={styles.tagText}>
-                    {tag}
-                  </Text>
-                ))}
-              </View>
-
               <Text style={styles.postContent}>{post.content}</Text>
 
               <View style={styles.iconRow}>
@@ -177,19 +150,16 @@ export default function Home({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F8FAFF",
-  },
+  container: { flex: 1, backgroundColor: "#F8FAFF" },
 
-  // HEADER AREA
+  // Header & Post Section
   header: {
     backgroundColor: "#001E40",
+    paddingTop: 50,
     paddingBottom: 25,
+    paddingHorizontal: 20,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
-    paddingTop: 40,
-    paddingHorizontal: 20,
   },
   headerTitle: {
     color: "white",
@@ -211,34 +181,26 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#001E40",
   },
-  postOptions: {
-    marginTop: 12,
+  optionsRow: {
+    marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  userImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: "#FFC107",
-  },
-  optionText: {
-    color: "white",
-    fontSize: 11,
-  },
-  optionRow: {
+  optionButton: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 5,
   },
+  optionText: { fontSize: 13, color: "#001E40" },
+  optionActive: { opacity: 0.9 },
   subjectInput: {
     backgroundColor: "#001E40",
     color: "white",
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    width: 110,
+    width: 120,
     fontSize: 11,
     textAlign: "center",
   },
@@ -254,89 +216,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 6,
   },
-  postBtnText: {
-    fontWeight: "bold",
-    color: "#001E40",
-  },
+  postBtnText: { fontWeight: "bold", color: "#001E40" },
 
-  // POSTS
+  // Feed Posts
   postCard: {
     backgroundColor: "white",
     marginHorizontal: 15,
     marginBottom: 15,
     borderRadius: 10,
     padding: 15,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 2,
     elevation: 2,
   },
-  postHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  avatar: {
-    width: 45,
-    height: 45,
-    borderRadius: 25,
-  },
-  postName: {
-    color: "#001E40",
-    fontWeight: "bold",
-  },
-  postCourse: {
-    color: "#001E40",
-    fontSize: 11,
-  },
-  postTime: {
-    color: "#555",
-    fontSize: 10,
-  },
-  subjectTag: {
-    color: "#001E40",
-    fontSize: 11,
-    fontWeight: "bold",
-  },
+  postHeader: { flexDirection: "row", alignItems: "center" },
+  avatar: { width: 45, height: 45, borderRadius: 25 },
+  postName: { color: "#001E40", fontWeight: "bold" },
+  postCourse: { color: "#001E40", fontSize: 11 },
+  postTime: { color: "#555", fontSize: 10 },
+  subjectTag: { color: "#001E40", fontSize: 11, fontWeight: "bold" },
   subjectBadge: {
     backgroundColor: "#001E40",
     borderRadius: 5,
     paddingHorizontal: 6,
     marginLeft: 3,
   },
-  subjectText: {
-    color: "white",
-    fontSize: 10,
-  },
-  tagRow: {
-    flexDirection: "row",
-    gap: 8,
-    marginTop: 4,
-  },
-  tagText: {
-    color: "#001E40",
-    fontSize: 10,
-    backgroundColor: "#E8EDF6",
-    paddingHorizontal: 5,
-    borderRadius: 3,
-  },
-  postContent: {
-    color: "#001E40",
-    fontSize: 13,
-    marginVertical: 8,
-  },
+  subjectText: { color: "white", fontSize: 10 },
+  postContent: { color: "#001E40", fontSize: 13, marginVertical: 8 },
   iconRow: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 8,
   },
-  iconGroup: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 3,
-  },
-  iconText: {
-    color: "#001E40",
-    fontSize: 12,
-  },
+  iconGroup: { flexDirection: "row", alignItems: "center", gap: 3 },
+  iconText: { color: "#001E40", fontSize: 12 },
 });
