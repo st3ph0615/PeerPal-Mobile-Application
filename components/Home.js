@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
-export default function NewsfeedScreen() {
+export default function Home({navigation}) {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [subject, setSubject] = useState("");
@@ -35,7 +35,7 @@ export default function NewsfeedScreen() {
       isAnonymous: isAnonymous,
       avatar: isAnonymous
         ? require("../assets/1on1.png")
-        : require("../assets/1on1.png"),
+        : require("../assets/default-profile.png"),
     };
 
     setPosts([newEntry, ...posts]);
@@ -145,6 +145,24 @@ export default function NewsfeedScreen() {
           ))}
         </View>
       </ScrollView>
+      {/* Bottom Navigation */}
+              <View style={styles.bottomNav}>
+                <TouchableOpacity onPress={() => navigation.navigate('Newsfeed')}>
+                  <Ionicons name="person-outline" size={26} color="#001E40" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.navHighlight}>
+                  <Ionicons name="home" size={26} color="#001E40" />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                          <Ionicons name="calendar-outline" size={24} color="#001E40" />
+                        </TouchableOpacity>
+                <TouchableOpacity>
+                  <Ionicons name="chatbubble-ellipses-outline" size={26} color="#001E40" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('StudentProfile')}>
+                  <Ionicons name="person-circle-outline" size={28} color="#001E40" />
+                </TouchableOpacity>
+              </View>
     </View>
   );
 }
@@ -211,7 +229,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   postBtn: {
-    backgroundColor: "#FFC107",
+    backgroundColor: "#FFBA06",
     paddingVertical: 8,
     paddingHorizontal: 25,
     borderRadius: 6,
@@ -248,4 +266,27 @@ const styles = StyleSheet.create({
   },
   iconGroup: { flexDirection: "row", alignItems: "center", gap: 3 },
   iconText: { color: "#001E40", fontSize: 12 },
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "white",
+    paddingVertical: 10,
+    borderTopWidth: 0.3,
+    borderColor: "#ccc",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  navHighlight: {
+    backgroundColor: "#FFC107",
+    padding: 10,
+    borderRadius: 30,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3,
+    elevation: 3,
+  }
 });
