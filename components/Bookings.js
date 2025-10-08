@@ -25,7 +25,7 @@ export default function Bookings({navigation}){
                             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                               <Ionicons name="home" size={26} color="#001E40" />
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.navHighlight}>
+                            <TouchableOpacity>
                                       <Ionicons name="calendar-outline" size={24} color="#001E40" />
                                     </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate('MessagesScreen')}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#F8FAFF',
+        backgroundColor: '#86a0bdff',
         padding: 70.84,
     },
     header: {
@@ -60,15 +60,15 @@ const styles = StyleSheet.create({
 
     },
     img: {
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         marginBottom: 20,
         opacity: 0.5,
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#001E40',
+        color: '#FFC107',
         marginBottom: 8,
     },
     subtitle: {

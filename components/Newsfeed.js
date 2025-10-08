@@ -7,9 +7,12 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
 import { MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
+
+
+
+
 
 const tutorsData = [
   {
@@ -86,7 +89,7 @@ export default function Newsfeed({navigation}) {
     
 
     return(
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             {/*Header Part*/}
             <View style={styles.header}>
                 <View>
@@ -141,7 +144,7 @@ export default function Newsfeed({navigation}) {
           <Ionicons name="person-circle-outline" size={28} color="#001E40" />
         </TouchableOpacity>
       </View>
-        </SafeAreaView>
+        </View>
     )
 }
 

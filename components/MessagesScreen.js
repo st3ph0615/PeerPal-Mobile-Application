@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
-export default function MessagesScreen() {
+export default function MessagesScreen({navigation}) {
   const [activeTab, setActiveTab] = useState("Chats");
 
   const chatData = [
@@ -171,7 +171,7 @@ export default function MessagesScreen() {
         <Ionicons name="create-outline" size={24} color="white" />
       </TouchableOpacity>
       <View style={styles.bottomNav}>
-              <TouchableOpacity style={styles.navHighlight}>
+              <TouchableOpacity onPress={() => navigation.navigate('Newsfeed')}>
                 <Ionicons name="person-outline" size={26} color="#001E40" />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -180,7 +180,7 @@ export default function MessagesScreen() {
               <TouchableOpacity onPress={() => navigation.navigate('Bookings')}>
                         <Ionicons name="calendar-outline" size={24} color="#001E40" />
                       </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('MessagesScreen')}>
+              <TouchableOpacity style={styles.navHighlight}>
                 <Ionicons name="chatbubble-ellipses-outline" size={26} color="#001E40" />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('StudentProfile')}>
