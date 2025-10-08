@@ -20,8 +20,13 @@ import PendingApproval from "./components/PendingApproval";
 import Newsfeed from "./components/Newsfeed";
 import StudentProfile from "./components/StudentProfile";
 import Home from "./components/Home";
+import Bookings from "./components/Bookings";
+import MessagesScreen from "./components/MessagesScreen";
+
+
 
 import { Provider as PaperProvider } from 'react-native-paper';
+
 
 
 const Stack = createStackNavigator();
@@ -51,6 +56,10 @@ export default function App() {
         <Stack.Screen name="Newsfeed" component={Newsfeed}/>
         <Stack.Screen name="StudentProfile" component={StudentProfile}/>
         <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="Bookings" component={Bookings}/>
+        <Stack.Screen name="MessagesScreen" component={MessagesScreen}/>
+
+
         
       </Stack.Navigator>
     </NavigationContainer>

@@ -107,10 +107,10 @@ export default function StudentProfile({navigation}) {
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Ionicons name="home-outline" size={24} color="#001E40" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Bookings')}>
           <Ionicons name="calendar-outline" size={24} color="#001E40" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('MessagesScreen')}>
           <Ionicons name="chatbubble-ellipses-outline" size={24} color="#001E40" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navHighlight}>
