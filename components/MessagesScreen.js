@@ -7,8 +7,10 @@ import {
   TextInput,
   FlatList,
   Image,
+  ScrollView,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MessagesScreen({navigation}) {
   const [activeTab, setActiveTab] = useState("Chats");
@@ -111,10 +113,10 @@ export default function MessagesScreen({navigation}) {
   return (
     <View style={styles.container}>
       {/* Header */}
+      <SafeAreaView>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Messages</Text>
       </View>
-
       {/* Search Bar */}
       <View style={styles.searchBar}>
         <Ionicons name="search-outline" size={20} color="#001E40" />
@@ -166,6 +168,9 @@ export default function MessagesScreen({navigation}) {
           contentContainerStyle={{ paddingBottom: 30 }}
         />
       )}
+      </SafeAreaView>
+      
+
 
       <TouchableOpacity style={styles.fab}>
         <Ionicons name="create-outline" size={24} color="white" />
@@ -187,6 +192,7 @@ export default function MessagesScreen({navigation}) {
                 <Ionicons name="person-circle-outline" size={28} color="#001E40" />
               </TouchableOpacity>
             </View>
+            
     </View>
   );
 }
@@ -195,14 +201,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F8FAFF",
-    paddingHorizontal: 15,
+   
   },
   header: {
     backgroundColor: "#001E40",
-    paddingVertical: 20,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-    alignItems: "center",
+    paddingTop: 75,
+    paddingBottom: 25,
+    paddingHorizontal: 20,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    alignItems: 'center',
   },
   headerTitle: {
     color: "white",
@@ -212,19 +220,21 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#D9D9D9",
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    marginTop: 10,
+    margin: 15,
     elevation: 2,
+    height: 48.3,
+    
   },
   tabContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    marginTop: 15,
-    marginBottom: 10,
+    margin: 10,
     gap: 20,
+
   },
   tabText: {
     color: "#001E40",
@@ -242,7 +252,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 12,
     padding: 12,
-    marginBottom: 10,
+    marginBottom: 5,
+    marginRight: 10,
+    marginLeft: 10,
     elevation: 2,
   },
   avatar: {
