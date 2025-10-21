@@ -6,7 +6,7 @@ import AppLoading from "expo-app-loading";
 
 
 export default function LoginScreen({navigation}) {
-
+  const [activeTab, setActiveTab] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -33,6 +33,44 @@ export default function LoginScreen({navigation}) {
       <Text>Your university's hub for tutoring and peer learning.</Text>
     </View>
     <View style={styles.bottomContainer}>
+
+      {/* Toggle Buttons */}
+      <View style={styles.toggleContainer}>
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            activeTab === "login" && styles.activeButton,
+          ]}
+          onPress={() => setActiveTab("login")}
+        >
+          <Text
+            style={[
+              styles.toggleText,
+              activeTab === "login" && styles.activeText,
+            ]}
+          >
+            Log in
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            activeTab === "signup" && styles.activeButton,
+          ]}
+          onPress={() => setActiveTab("signup")}
+        >
+          <Text
+            style={[
+              styles.toggleText,
+              activeTab === "signup" && styles.activeText,
+            ]}
+          >
+            Sign in
+          </Text>
+        </TouchableOpacity>
+      </View>
+
     <Text style={styles.loginHeader}>Login to your account</Text>
     <TextInput
       label='Enter your email'
@@ -64,8 +102,8 @@ export default function LoginScreen({navigation}) {
       <Checkbox.Android
       status={checked ? "checked" : "unchecked"}
       onPress={() => setChecked(!checked)}
-      color='#ffffffff'
-      uncheckedColor='#fff'
+      color='#001E40'
+      uncheckedColor='#001E40'
       />
       <Text style={styles.checkboxLabel}>Remember Me</Text>
     </TouchableOpacity>
@@ -95,7 +133,7 @@ export default function LoginScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#001E40',
+    backgroundColor: 'white',
     fontFamily: "Roboto_400Regular",
   },
   upperContainer: {
@@ -106,6 +144,8 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     height: 400,
+    borderWidth: 2,
+    borderColor: '#FFBA06',
 
   },
   welcome: {
@@ -124,14 +164,37 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 170.69,
+    height: 172.02,
     resizeMode: "contain",
     marginVertical: 10,
   },
+  toggleContainer: {
+    flexDirection: "row",
+    marginTop: 30,
+    borderWidth: 1,
+    borderRadius: 30,
+    overflow: "hidden",
+  },
+  toggleButton: {
+    width: 120,
+    paddingVertical: 10,
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  activeButton: {
+    backgroundColor: "#FFBA06",
+  },
+  toggleText: {
+    color: "#001E40",
+    fontWeight: "600",
+  },
+  activeText: {
+    color: "#fff",
+  },
   loginHeader: {
     marginTop: 40,
-    color: 'white',
+    color: '#001E40',
     fontSize: 21,
     textAlign: 'center',
     fontWeight: 'bold',
@@ -139,6 +202,8 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#fff',
     width: 282.5,
+    height: 42.33,
+    fontSize: 13,
   },
   row: {
     flexDirection: 'row',
@@ -153,11 +218,11 @@ const styles = StyleSheet.create({
   },
   checkboxLabel: {
     fontSize: 12,
-    color: 'white',
+    color: '#001E40',
   },
   forgotPassword: {
     fontSize: 12,
-    color: 'white',
+    color: '#001E40',
     textDecorationLine: 'underline',
   },
   buttonContainer: {
@@ -168,7 +233,7 @@ const styles = StyleSheet.create({
   button: {
     width: 200,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#FFBA06',
   },
   label: {
     fontSize: 18,
@@ -177,14 +242,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',  
   },
   noAccount: {
-    color: 'white',
+    color: '#001E40',
   },
   signUp: {
     flexDirection: 'row',
   },
   message: {
     marginTop: 20,
-    color: "white",
+    color: "#001E40",
     fontSize: 16,
     fontWeight: "bold",
   },
