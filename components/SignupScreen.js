@@ -4,9 +4,9 @@ import { Checkbox } from "react-native-paper";
 
 
 export default function SignupScreen({navigation}) {
-  const [activeTab, setActiveTab] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [reEnterPassword, setreEnterPassword] = useState("");
   const [checked, setChecked] = useState(false);
 
   return(
@@ -44,7 +44,7 @@ export default function SignupScreen({navigation}) {
 
       {/*Forms*/}
       <View style={styles.formContainer}>
-        <Text style={styles.formTitle}>Login to your account</Text>
+        <Text style={styles.formTitle}>Create your account</Text>
 
         <TextInput
         placeholder="Enter your email"
@@ -54,11 +54,16 @@ export default function SignupScreen({navigation}) {
         />
         <TextInput
         placeholder="Password"
-        secureTextEntry
         value={password}
         onChangeText={setPassword}
         style={styles.input}
-        MaterialIcons
+        />
+        <TextInput
+        placeholder="Re-enter password"
+        secureTextEntry
+        value={reEnterPassword}
+        onChangeText={setreEnterPassword}
+        style={styles.input}
         />
 
         <View style={styles.row}>

@@ -20,7 +20,7 @@ export default function USerChoices({navigation}) {
                     </View>
 
                 </TouchableOpacity>
-
+                <Text style={styles.bigText}>or</Text>
                 <TouchableOpacity 
                 style={styles.choiceContainer}
                 onPress={() => navigation.navigate('TutorSetUp1')}>
@@ -43,16 +43,18 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 10,
+        gap: 15,
     },
     choiceContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#001E40',
-        padding: 20,
+        paddingHorizontal: 13,
+        paddingVertical: 24,
+        borderWidth: .5,
+        borderColor: '#001E40',
         borderRadius: 10,
-        width: 300,
+        width: 262,
         gap: 10,
     },
     textContainer: {
@@ -62,11 +64,11 @@ const styles = StyleSheet.create({
         gap: 5,
     },
     smallText: {
-        color: 'white',
+        color: '#001E40',
         fontSize: 24,
     },
     bigText: {
-        color: 'white',
+        color: '#001E40',
         fontWeight: 'bold',
         fontSize: 24,
     },
