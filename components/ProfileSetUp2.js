@@ -45,7 +45,7 @@ export default function ProfileSetUp1({navigation}){
                 </View>
         <View style={styles.formContainer}>
         <View style={{alignItems: 'center'}}>
-        <Text style={styles.header}>Which subject you want help with?</Text>
+        <Text style={styles.header}>Which subject you want</Text>
         <Text style={styles.header}>help with?</Text>
         </View>
         <View style={styles.profileContainer}>
@@ -64,7 +64,7 @@ export default function ProfileSetUp1({navigation}){
             onDismiss={closeMenu}
             anchor={
               <TextInput
-                label="Course & Year Level"
+                label="Code / Subject Title"
                 mode="outlined"
                 value={course}
                 style={styles.input}
@@ -97,9 +97,14 @@ export default function ProfileSetUp1({navigation}){
             />
           </Menu>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp2')}>
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp3')}>
+            <Text style={styles.continue}>Skip</Text>
+            </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp3')}>
             <Text style={styles.continue}>Continue</Text>
             </TouchableOpacity>
+        </View>
       </View>
       </View>
       </PaperProvider>
@@ -170,10 +175,14 @@ const styles = StyleSheet.create({
       width: 282,
       height: 42.33,
     },
+    buttonContainer: {
+        flexDirection: 'row',
+        gap: 30,
+    },
     button: {
       justifyContent: 'center',
       alignItems: 'center',
-      width: 261,
+      width: 127,
       height: 42,
       borderRadius: 10,
       backgroundColor: '#FFBA06',
