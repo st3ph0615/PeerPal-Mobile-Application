@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from 'reac
 import { Checkbox } from "react-native-paper";
 
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   const [activeTab, setActiveTab] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,16 +37,10 @@ export default function LoginScreen() {
         {/*Sign in toggle button*/} 
         <TouchableOpacity
           style={[
-            styles.toggleButton,
-            activeTab === "signin" && styles.activeButton,
-          ]}
-          onPress={() => setActiveTab("signin")}
+            styles.toggleButton          ]}
+          onPress={() => navigation.navigate("SignupScreen")}
         >
-          <Text
-            style={[
-              styles.toggleText,
-              activeTab === "signin" && styles.activeText,
-            ]}
+          <Text style={styles.toggleText}
           >Sign in</Text>
         </TouchableOpacity>
       </View>
@@ -94,8 +88,10 @@ export default function LoginScreen() {
         </View>
         </View>
 
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.buttonText}>Log In</Text>
+      <TouchableOpacity 
+        style={styles.loginButton} 
+        onPress={() => navigation.navigate('UserChoices')}>
+          <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
             
     </View>
