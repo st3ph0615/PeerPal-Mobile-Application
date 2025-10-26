@@ -108,45 +108,36 @@ const styles=StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#001E40',
-    },
-    header: {
-        fontWeight: 'bold',
-        fontSize: 24,
-        color: 'white',
-    },
-    bigIcon: {
-        marginTop: 31.69,
-        },
-    mainContainer: {
-        marginTop: 46.78,
-    },
-    title: {
-        color: 'white',
-        fontSize: 15,
-        fontWeight: 'bold',
-    },
-    choiceContainer: {
-        margin: 20,
+        backgroundColor: 'white',
         gap: 15,
     },
     header: {
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "white",
-        marginBottom: 10,
+        fontWeight: 'bold',
+        fontSize: 21,
+        color: '#001E40',
+    },
+    title: {
+        color: '#001E40',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+    mainContainer: {
+        gap: 15,
+    },
+    choiceContainer: {
+        gap: 5,
     },
     choice: {
-        borderWidth: 2,
-        borderColor: "#FFBA06",
+        borderWidth: .5,
+        borderColor: "#001E40",
         borderRadius: 10,
         padding: 10,
         backgroundColor: "white",
+        gap: 15,
     },
     option: {
         flexDirection: "row",
         alignItems: "center",
-        marginVertical: 8,
     },
     icon: {
         width: 40,
@@ -164,11 +155,10 @@ const styles=StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 53.67,
         width: 127,
         height: 42,
         borderRadius: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#FFBA06',
   },
     continue: {
         fontSize: 15,
