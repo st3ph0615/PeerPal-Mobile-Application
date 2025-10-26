@@ -37,6 +37,13 @@ export default function ProfileSetUp1({navigation}){
     return(
       <PaperProvider>
         <View style={styles.container}>
+          <View style={styles.topContainer}>  
+                  <Image
+                  source={require("../assets/logoPeerpal.png")}
+                  />
+                  <Text style={styles.subText}>Your university’s hub for tutoring and peer learning.</Text>
+                </View>
+        <View style={styles.formContainer}>
         <Text style={styles.header}>Let's set up your profile!</Text>
         <View style={styles.profileContainer}>
         <TouchableOpacity style={styles.imageContainer} onPress={pickImage}>
@@ -114,27 +121,46 @@ export default function ProfileSetUp1({navigation}){
             <Text style={styles.continue}>Continue</Text>
             </TouchableOpacity>
       </View>
+      </View>
       </PaperProvider>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#001E40',
-    },
-    header: {
-        fontWeight: 'bold',
-        fontSize: 24,
-        color: 'white',
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  topContainer: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    width: '100%',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    padding: 50,
+    borderWidth: 1,
+    borderBottomColor: '#FFBA06',
+  },
+  subText: {
+    fontSize: 12,
+    fontWeight: 12,
+  },
+  formContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 24,
+    gap: 20,
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 21,
+    color: '#001E40',
         
     },
-    image: {
+  image: {
       width: 136,
       height: 125,
-      marginBottom: 5,
 
     },
     profileContainer: {
@@ -145,7 +171,6 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 31.69,
     },
     editIcon: {
       position: 'absolute',
@@ -158,24 +183,20 @@ const styles = StyleSheet.create({
     inputContainer:{
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 54.06,
       gap: 8.67,
     },
     input: {
       backgroundColor: '#fff',
       width: 282,
-      height: 42,
-      borderRadius: 15,
-      padding: 10,
+      height: 42.33,
     },
     button: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 53.67,
       width: 261,
       height: 42,
       borderRadius: 10,
-      backgroundColor: 'white',
+      backgroundColor: '#FFBA06',
   },
   continue: {
     fontSize: 15,

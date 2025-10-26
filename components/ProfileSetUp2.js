@@ -1,116 +1,189 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
+import { MaterialIcons } from "@expo/vector-icons";
 import { PaperProvider, TextInput, Menu } from "react-native-paper";
 
 
-
-export default function ProfileSetUp2({navigation}){
+export default function ProfileSetUp1({navigation}){
+    const [profileImage, setProfileImage] = useState(null);
+    const [fullName, setFullName] = useState("");
+    const [studentId, setstudentId] = useState("");
     const [course, setCourse] = useState("");
     const [menuVisible, setMenuVisible] = useState(false);
 
     const openMenu = () => setMenuVisible(true);
     const closeMenu = () => setMenuVisible(false);
 
-    return(
-        <PaperProvider>
-        <View style={styles.container}>
-            <Text style={styles.header}>Which subject you</Text>
-            <Text style={styles.header}>want help with?</Text>
-            <Image
-            source={require('../assets/icon.png')}
-            style={styles.icon}
-            />
+    const pickImage = async () => {
+        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!permissionResult.granted) {
+      alert("Permission to access camera roll is required!");
+      return;
+        }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],  
+      allowsEditing: true,
+      aspect: [1, 1], 
+      quality: 1,
+    });
 
-            <Menu
-                visible={menuVisible}
-                onDismiss={closeMenu}
-                anchor={
-                <TextInput
-                    label="Course & Year Level"
-                    mode="outlined"
-                    value={course}
-                    style={styles.input}
-                    editable={false}
-                    right={
-                        <TextInput.Icon
-                            icon="menu-down"
-                            onPress={openMenu}
-                              />
-                            }
-                          />
-                        }
-                      
-            >
-                <Menu.Item
-                              onPress={() => { setCourse("BS Computer Science"); closeMenu(); }}
-                              title="BS Computer Science"
-                            />
-                            <Menu.Item
-                              onPress={() => { setCourse("BS Information Technology"); closeMenu(); }}
-                              title="BS Information Technology"
-                            />
-                            <Menu.Item
-                              onPress={() => { setCourse("BS Civil Engineering"); closeMenu(); }}
-                              title="BS Engineering"
-                            />
-                            <Menu.Item
-                              onPress={() => { setCourse("BS Computer Engineering"); closeMenu(); }}
-                              title="BS Engineering"
-                            />
-            </Menu>
-            <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp3')}>
-                <Text style={styles.continue}>Skip</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp3')}>
-                <Text style={styles.continue}>Continue</Text>
-            </TouchableOpacity>
-            </View>
+
+    if (!result.canceled) {
+      setProfileImage(result.assets[0].uri);
+    }
+  };
+
+    return(
+      <PaperProvider>
+        <View style={styles.container}>
+          <View style={styles.topContainer}>  
+                  <Image
+                  source={require("../assets/logoPeerpal.png")}
+                  />
+                  <Text style={styles.subText}>Your university’s hub for tutoring and peer learning.</Text>
+                </View>
+        <View style={styles.formContainer}>
+        <View style={{alignItems: 'center'}}>
+        <Text style={styles.header}>Which subject you want help with?</Text>
+        <Text style={styles.header}>help with?</Text>
         </View>
-        </PaperProvider>
+        <View style={styles.profileContainer}>
+            <Image
+            source={
+                profileImage
+                ? { uri: profileImage } 
+                : require("../assets/icon.png")
+            }
+            style={styles.image}
+            /> 
+        </View>
+        <View style={styles.inputContainer}>
+        <Menu
+            visible={menuVisible}
+            onDismiss={closeMenu}
+            anchor={
+              <TextInput
+                label="Course & Year Level"
+                mode="outlined"
+                value={course}
+                style={styles.input}
+                editable={false}
+                right={
+                  <TextInput.Icon
+                    icon="menu-down"
+                    onPress={openMenu}
+                  />
+                }
+              />
+            }
+          
+        >
+        <Menu.Item
+              onPress={() => { setCourse("BS Computer Science"); closeMenu(); }}
+              title="BS Computer Science"
+            />
+            <Menu.Item
+              onPress={() => { setCourse("BS Information Technology"); closeMenu(); }}
+              title="BS Information Technology"
+            />
+            <Menu.Item
+              onPress={() => { setCourse("BS Civil Engineering"); closeMenu(); }}
+              title="BS Engineering"
+            />
+            <Menu.Item
+              onPress={() => { setCourse("BS Computer Engineering"); closeMenu(); }}
+              title="BS Engineering"
+            />
+          </Menu>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfileSetUp2')}>
+            <Text style={styles.continue}>Continue</Text>
+            </TouchableOpacity>
+      </View>
+      </View>
+      </PaperProvider>
     );
 }
 
-const styles= StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#001E40',
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  topContainer: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    width: '100%',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    padding: 50,
+    borderWidth: 1,
+    borderBottomColor: '#FFBA06',
+  },
+  subText: {
+    fontSize: 12,
+    fontWeight: 12,
+  },
+  formContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 24,
+    gap: 20,
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 21,
+    color: '#001E40',
+        
     },
-    header: {
-        fontWeight: 'bold',
-        fontSize: 24,
-        color: 'white',
+  image: {
+      width: 136,
+      height: 125,
+
     },
-    icon: {
-        marginTop: 31.69,
+    profileContainer: {
+      width: 150,
+      height: 150,
+      borderColor: 'white',
+      borderRadius: 100,
+      borderWidth: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    editIcon: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      backgroundColor: "#FFBA06",
+      borderRadius: 15,
+      padding: 5,
+    },
+    inputContainer:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 8.67,
     },
     input: {
-        marginTop: 54.6,
-        backgroundColor: '#fff',
-        width: 282,
-        height: 42,
-        borderRadius: 15,
-        padding: 10,
-    },
-    buttonContainer:{
-        flexDirection: 'row',
-        gap: 42,
+      backgroundColor: '#fff',
+      width: 282,
+      height: 42.33,
     },
     button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 53.67,
-        width: 127,
-        height: 42,
-        borderRadius: 10,
-        backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 261,
+      height: 42,
+      borderRadius: 10,
+      backgroundColor: '#FFBA06',
   },
-    continue: {
-        fontSize: 15,
-        fontWeight: "bold",
-        color: "#001E40", 
-        textAlign: 'center',  
-    },
+  continue: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#001E40", 
+    textAlign: 'center',  
+  },
+
+
 });
